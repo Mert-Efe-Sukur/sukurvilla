@@ -38,7 +38,7 @@ header .logo {
 }
 
 header .logo img {
-    height: 50px;
+    height: 60px; /* Adjust as needed */
     margin-right: 10px;
 }
 
@@ -136,6 +136,23 @@ section p {
 
 #contact {
     background-color: #b2bec3;
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+}
+
+.contact-info a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
 }
 
 /* Gallery Section */
