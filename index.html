@@ -64,7 +64,7 @@
 
     <section id="contact">
         <h2>İletişim</h2>
-        <form id="contact-form" aria-label="Contact Form">
+        <form id="contact-form">
             <label for="name">Adınız:</label>
             <input type="text" id="name" name="name" required>
             
@@ -88,26 +88,15 @@
 
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
-
-            // Collect form data
-            const form = event.target;
-            const formData = new FormData(form);
-
-            // Create a template object with the form data
-            const templateParams = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-
-            // Send the email using EmailJS
-            emailjs.send('service_vh7x6h5', 'template_p4gljfr', templateParams)
-                .then(function(response) {
+            
+            emailjs.sendForm('service_vh7x6h5', 'template_p4gljfr', '#contact-form')
+                .then((response) => {
+                    console.log('SUCCESS!', response.status, response.text);
                     alert('Mesajınız başarıyla gönderildi!');
-                    form.reset(); // Reset form fields after successful submission
-                }, function(error) {
+                    document.getElementById('contact-form').reset(); // Reset form fields after successful submission
+                }, (error) => {
+                    console.log('FAILED...', error);
                     alert('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
-                    console.error('EmailJS Error:', error);
                 });
         });
     </script>
