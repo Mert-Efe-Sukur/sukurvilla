@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H36SW1QX8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-5H36SW1QX8');
-    </script>
-    <meta name="google-site-verification" content="Dy02y5pf4ltnkyYIzxnB4f11_jKCZWW_0LCY0S31eKw" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Şükür Villa - Lüks Kiralık Villa</title>
@@ -44,6 +35,10 @@
     <section id="about">
         <h2>Hakkında</h2>
         <p>Şükür Villa, modern ve lüks tasarımı ile misafirlerine konforlu bir konaklama imkanı sunmaktadır.</p>
+        <div class="contact-info">
+            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/sukurvilla" target="_blank">sukurvilla</a></p>
+            <p><strong>Email:</strong> <a href="mailto:sukurluxvilla@gmail.com">sukurluxvilla@gmail.com</a></p>
+        </div>
     </section>
 
     <section id="gallery">
@@ -52,7 +47,6 @@
             <img src="https://raw.githubusercontent.com/Mert-Efe-Sukur/sukurvilla/main/20220627_104628.jpg" alt="Villa Image 1">
             <img src="https://raw.githubusercontent.com/Mert-Efe-Sukur/sukurvilla/main/20240425_121646.jpg" alt="Villa Image 2">
             <img src="https://raw.githubusercontent.com/Mert-Efe-Sukur/sukurvilla/main/20220605_115457.jpg" alt="Villa Image 3">
-            <!-- Add more images as needed -->
         </div>
     </section>
 
@@ -75,33 +69,12 @@
             
             <button type="submit">Gönder</button>
         </form>
-        <div class="contact-info">
-            <p><strong>Email:</strong> <a href="mailto:sukurluxvilla@gmail.com">sukurluxvilla@gmail.com</a></p>
-            <p><strong>Instagram:</strong> <a href="https://instagram.com/sukurvilla" target="_blank">@sukurvilla</a></p>
-        </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Şükür Villa. Tüm hakları saklıdır.</p>
     </footer>
 
-    <script>
-        // Initialize EmailJS with your public key
-        emailjs.init("cIcj2daicL2Nro6xf");
-
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            emailjs.sendForm('service_vh7x6h5', 'template_p4gljfr', '#contact-form')
-                .then((response) => {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert('Mesajınız başarıyla gönderildi!');
-                    document.getElementById('contact-form').reset(); // Reset form fields after successful submission
-                }, (error) => {
-                    console.log('FAILED...', error);
-                    alert('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
-                });
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
