@@ -100,13 +100,14 @@
                 message: formData.get('message')
             };
 
-            // Send the email
+            // Send the email using EmailJS
             emailjs.send('service_vh7x6h5', 'template_p4gljfr', templateParams)
                 .then(function(response) {
                     alert('Mesajınız başarıyla gönderildi!');
-                    form.reset(); // Optional: Reset form fields after successful submission
+                    form.reset(); // Reset form fields after successful submission
                 }, function(error) {
                     alert('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+                    console.error('EmailJS Error:', error);
                 });
         });
     </script>
