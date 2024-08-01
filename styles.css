@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    background-color: #f9f9f9;
+    background-color: #f5f5f5; /* Light grey background for better contrast */
     line-height: 1.6;
 }
 
@@ -24,7 +24,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #3498db;
+    background-color: #2c3e50; /* Darker header background for contrast */
     color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -39,7 +39,12 @@ header .logo {
 
 header .logo img {
     height: 60px; /* Adjust as needed */
-    margin-right: 10px;
+    margin-right: 15px; /* Increased space between logo and title */
+}
+
+header .logo h1 {
+    font-size: 1.8em;
+    margin: 0;
 }
 
 header nav ul {
@@ -78,7 +83,7 @@ header nav ul li a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5); /* Darker overlay for better text readability */
 }
 
 #hero .hero-content {
@@ -88,7 +93,7 @@ header nav ul li a:hover {
 
 #hero .cta-button {
     padding: 15px 30px;
-    background-color: #f39c12;
+    background-color: #e67e22; /* Updated button color */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -98,7 +103,7 @@ header nav ul li a:hover {
 }
 
 #hero .cta-button:hover {
-    background-color: #e67e22;
+    background-color: #d35400; /* Darker button color on hover */
 }
 
 /* Section Styles */
@@ -123,31 +128,33 @@ section p {
 }
 
 #about {
-    background-color: #ecf0f1;
+    background-color: #ecf0f1; /* Light background for contrast */
 }
 
 #gallery {
-    background-color: #dfe6e9;
+    background-color: #bdc3c7; /* Lighter grey for gallery section */
 }
 
 #location {
-    background-color: #bdc3c7;
+    background-color: #95a5a6; /* Slightly darker grey for location section */
 }
 
 #contact {
-    background-color: #b2bec3;
+    background-color: #7f8c8d; /* Even darker grey for contact section */
 }
 
 .contact-info {
     margin-top: 20px;
+    text-align: center; /* Center-align contact info */
 }
 
 .contact-info p {
     font-size: 1.1em;
+    margin: 10px 0;
 }
 
 .contact-info a {
-    color: #3498db;
+    color: #3498db; /* Use a contrasting color */
     text-decoration: none;
 }
 
@@ -191,7 +198,7 @@ section p {
 
 #contact-form button {
     padding: 15px;
-    background-color: #3498db;
+    background-color: #2c3e50; /* Updated button color */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -201,14 +208,14 @@ section p {
 }
 
 #contact-form button:hover {
-    background-color: #2980b9;
+    background-color: #34495e; /* Darker button color on hover */
 }
 
 /* Footer Styles */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #3498db;
+    background-color: #2c3e50; /* Footer background color */
     color: #fff;
 }
 
@@ -219,7 +226,11 @@ footer p {
 /* Responsive Design */
 @media (max-width: 768px) {
     header .logo img {
-        height: 40px;
+        height: 50px;
+    }
+
+    header .logo h1 {
+        font-size: 1.5em;
     }
 
     header nav ul {
