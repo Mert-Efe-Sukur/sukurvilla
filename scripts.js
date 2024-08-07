@@ -19,7 +19,7 @@
             console.log('Google API client initialized.');
             gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        }, function(error) {
+        }).catch(function(error) {
             displayError('Error initializing Google API client: ' + error.message);
         });
     }
@@ -29,7 +29,9 @@
             console.log('User is signed in.');
         } else {
             console.log('User is not signed in. Attempting to sign in.');
-            gapi.auth2.getAuthInstance().signIn();
+            gapi.auth2.getAuthInstance().signIn().catch(function(error) {
+                displayError('Sign-in error: ' + error.message);
+            });
         }
     }
 
@@ -75,7 +77,7 @@
             console.log('Event created: ', response);
             alert('Rezervasyon başarılı!');
             form.reset();
-        }, function(error) {
+        }).catch(function(error) {
             displayError('Error creating event: ' + error.message);
         });
     }
