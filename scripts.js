@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+
+    document.addEventListener("DOMContentLoaded", function () {
     const CLIENT_ID = '372847734905-k1qh9pblbj38d3hgk8g40hjq1o28u296.apps.googleusercontent.com'; // Replace with your Client ID
     const API_KEY = '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'; // Replace with your API Key
     const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -15,10 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
         }).then(function () {
+            console.log('Google API client initialized.');
             gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         }, function(error) {
-            console.error("Error initializing Google API client", error);
+            displayError('Error initializing Google API client: ' + error.message);
         });
     }
 
@@ -26,12 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isSignedIn) {
             console.log('User is signed in.');
         } else {
+            console.log('User is not signed in. Attempting to sign in.');
             gapi.auth2.getAuthInstance().signIn();
         }
     }
 
     function handleFormSubmit(event) {
         event.preventDefault();
+        clearErrors(); // Clear previous errors
 
         const form = event.target;
         const name = form.name.value.trim();
@@ -39,6 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const date = form.date.value;
         const days = parseInt(form.days.value, 10);
         const guests = parseInt(form.guests.value, 10);
+
+        if (!date || isNaN(days) || isNaN(guests)) {
+            displayError('Invalid form data. Please check your input.');
+            return;
+        }
 
         const startDate = new Date(date);
         const endDate = new Date(startDate);
@@ -49,13 +58,15 @@ document.addEventListener("DOMContentLoaded", function () {
             'description': `Reservation for ${guests} guests`,
             'start': {
                 'dateTime': startDate.toISOString(),
-                'timeZone': 'Europe/Istanbul', // Time zone set to Istanbul
+                'timeZone': 'Europe/Istanbul',
             },
             'end': {
                 'dateTime': endDate.toISOString(),
-                'timeZone': 'Europe/Istanbul', // Time zone set to Istanbul
+                'timeZone': 'Europe/Istanbul',
             },
         };
+
+        console.log('Creating event with details:', eventDetails);
 
         gapi.client.calendar.events.insert({
             'calendarId': 'primary',
@@ -65,9 +76,24 @@ document.addEventListener("DOMContentLoaded", function () {
             alert('Rezervasyon başarılı!');
             form.reset();
         }, function(error) {
-            console.error('Error creating event: ', error);
-            alert('Rezervasyon yapılamadı. Lütfen tekrar deneyin.');
+            displayError('Error creating event: ' + error.message);
         });
+    }
+
+    function displayError(message) {
+        const errorContainer = document.getElementById('error-container');
+        if (errorContainer) {
+            errorContainer.innerText = message;
+            errorContainer.style.display = 'block';
+        }
+    }
+
+    function clearErrors() {
+        const errorContainer = document.getElementById('error-container');
+        if (errorContainer) {
+            errorContainer.innerText = '';
+            errorContainer.style.display = 'none';
+        }
     }
 
     handleClientLoad();
